@@ -213,7 +213,7 @@ async function carregaEntrevistas(max) {
             const date = filme.release_date.split('-');
 
             $("#dadosEntrevista").append(
-                `<div class="col-12 col-md-4 my-2 d-flex">
+                `<div class="col-12 col-md-4 my-2">
                     <div class="card">
                         ${keyYT != null ?
                             `<iframe class="card-img-top" height="200" src="https://www.youtube.com/embed/${keyYT}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
