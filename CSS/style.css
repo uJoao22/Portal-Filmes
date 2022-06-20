@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: rgb(219, 219, 219);
+}
+
+.comentario::-webkit-scrollbar {
+    width: 10px;
+}
+  
+.comentario::-webkit-scrollbar-track {
+    background: rgb(128, 128, 128);
+    border-radius: 20px;
+}
+  
+.comentario::-webkit-scrollbar-thumb {
+    background-color: rgb(39, 39, 39);
+    border-radius: 20px;
+    border: 2px solid rgb(128, 128, 128);
+}
+
+.filmeListed:hover {
+    transform: scale(1.01);
+}
