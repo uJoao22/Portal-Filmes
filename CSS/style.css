@@ -7,25 +7,27 @@
     scroll-behavior: smooth;
 }
 
-body{
-    background-color: rgb(219, 219, 219);
-}
+body{ background-color: rgb(219, 219, 219); }
 
-.comentario::-webkit-scrollbar {
-    width: 10px;
-}
-  
+.comentario::-webkit-scrollbar { width: 10px; }
+
 .comentario::-webkit-scrollbar-track {
     background: rgb(128, 128, 128);
     border-radius: 20px;
 }
-  
+
 .comentario::-webkit-scrollbar-thumb {
     background-color: rgb(39, 39, 39);
     border-radius: 20px;
     border: 2px solid rgb(128, 128, 128);
 }
 
-.filmeListed:hover {
-    transform: scale(1.01);
-}
+.filmeListed:hover { transform: scale(1.01); }
+
+.video { height: 450px; }
+@media (max-width: 992px) { .video { height: 350px; } }
+@media (max-width: 768px) { .video { height: 250px; } }
+@media (max-width: 540px) { .video { height: 200px; } }
+
+.videoLancamento{ height: 350px; }
+@media (max-width: 540px) { .videoLancamento { height: 250px; } }

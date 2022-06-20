@@ -47,8 +47,8 @@ async function carregaTrailer(idFilme) {
     if(keyYT != null) {
         $("#trailer").append(
             `<h1>Trailer</h1>
-            <div class="border border-1 border-secondary p-2 col-sm-8 col-12">
-                <iframe class="col-12 mx-auto d-block" width="560" height="350" src="https://www.youtube.com/embed/${keyYT}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="border border-1 border-secondary p-2 col-lg-10 col-12">
+                <iframe class="col-12 mx-auto d-block video" src="https://www.youtube.com/embed/${keyYT}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>`);
     }
 }

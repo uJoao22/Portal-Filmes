@@ -87,7 +87,7 @@ async function carregaLancamentos() {
                 <div>
                     <div class="row">
                         ${keyYT != null ?
-                            `<iframe class="col-lg-5 col-md-6 col-12" width="560" height="350" src="https://www.youtube.com/embed/${keyYT}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+                            `<iframe class="col-xl-5 col-md-6 col-12 videoLancamento" width="560" src="https://www.youtube.com/embed/${keyYT}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
                         :
                         `<div class="col-lg-5 col-md-6 col-12 d-flex justify-content-center align-items-center">
                             <img src="${listFilmes[i].backdrop_path != null ? `https://image.tmdb.org/t/p/w500${listFilmes[i].backdrop_path}` : ''}" alt="${listFilmes[i].title}">
@@ -96,7 +96,7 @@ async function carregaLancamentos() {
                             </label>
                         </div>`}
 
-                        <div class="col-lg-7 col-md-6 col-12">
+                        <div class="col-xl-7 col-md-6 col-12">
                             <h2 class="my-mb-0 my-3">${listFilmes[i].title}</h2>
                             <p><b>Sinopse: </b>${listFilmes[i].overview ? listFilmes[i].overview : 'Não disponível.'}</p>
 
@@ -181,7 +181,7 @@ function buscaReview(list, showAll) {
                                 }" alt="${av.author_details.username}"/>
                         </div>
 
-                        <div class="col-8 ms-2 comentario" style="height: 250px; overflow-y: auto;">
+                        <div class="col-8 ms-2 comentario" style="max-height: 250px; overflow-y: auto;">
                             <b><h4>${av.media_title}</h4></b>
                             <p class="m-0"><b>Escrito por:</b> <a href="${av.url}" target="_blank" class="text-dark">${av.author}</a></p>
                             <p><b>${formatDate(new Date(date[0], date[1], date[2].split('T')[0]))}</b></p>
@@ -213,13 +213,13 @@ async function carregaEntrevistas(max) {
             const date = filme.release_date.split('-');
 
             $("#dadosEntrevista").append(
-                `<div class="col-12 col-md-4 my-2">
+                `<div class="col-12 col-md-4 my-2 d-flex">
                     <div class="card">
                         ${keyYT != null ?
                             `<iframe class="card-img-top" height="200" src="https://www.youtube.com/embed/${keyYT}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
                         :
                         `<div class="card-img-top d-flex justify-content-center align-items-center">
-                            <img src="${filme.backdrop_path != null ? `https://image.tmdb.org/t/p/w500${filme.backdrop_path}` : ''}" alt="${filme.title}" height="200">
+                            <img src="${filme.backdrop_path != null ? `https://image.tmdb.org/t/p/w500${filme.backdrop_path}` : ''}" alt="${filme.title}" height="200" class="w-100">
                             <label class="position-absolute text-white p-2 px-5 text-center w-100" style="background: rgba(0, 0, 0, 0.8)">
                                 <h4>Vídeo não encontrado.</h4>
                             </label>
