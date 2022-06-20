@@ -1,6 +1,7 @@
 let pagina = new URL(window.location.href).searchParams.get("page");
 pagina = pagina == null ? 1 : parseInt(pagina);
 
+const path = './';
 let listFilmes = [];
 let maisFilmes = false;
 let maisAvaliacoes = false;
@@ -8,7 +9,7 @@ let maisEntrevistas = false;
 const reviews = [];
 
 $(document).ready(async () => {
-    fetchNavBar("./");
+    fetchNavBar(path);
     listFilmes = await carregaListaFilmes();
     carregaLancamentos();
     carregaCategoria();
@@ -44,7 +45,7 @@ document.querySelector("#maisFilmes").addEventListener('click', () => {
         }
     } else {
         document.querySelector("#maisFilmes").innerHTML = '<i class="fa-solid fa-plus"></i> Carregar mais filmes';
-        filterSelected == 0 ? carregaDestaque(listFilmes, 4) : carregaDestaqueByCategoria(); 
+        filterSelected == 0 ? carregaDestaque(listFilmes, 4) : carregaDestaqueByCategoria();
     }
 });
 
@@ -85,7 +86,7 @@ async function carregaLancamentos() {
             `<div class="carousel-item pb-5 ${i==0 ? 'active' : ''}">
                 <div>
                     <div class="row">
-                        ${keyYT != null ? 
+                        ${keyYT != null ?
                             `<iframe class="col-lg-5 col-md-6 col-12" width="560" height="350" src="https://www.youtube.com/embed/${keyYT}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
                         :
                         `<div class="col-lg-5 col-md-6 col-12 d-flex justify-content-center align-items-center">
@@ -174,12 +175,12 @@ function buscaReview(list, showAll) {
                     `<div class="col-md-4 col-12 d-flex p-2 my-2">
                         <div class="col-3">
                             <img class="w-100" src="${
-                                (`${av.author_details.avatar_path}`).indexOf('/http') != -1 ? 
-                                av.author_details.avatar_path.substr(1) : 
+                                (`${av.author_details.avatar_path}`).indexOf('/http') != -1 ?
+                                av.author_details.avatar_path.substr(1) :
                                 av.author_details.avatar_path == null ? '' : `https://image.tmdb.org/t/p/w500${av.author_details.avatar_path}`
                                 }" alt="${av.author_details.username}"/>
                         </div>
-    
+
                         <div class="col-8 ms-2 comentario" style="height: 250px; overflow-y: auto;">
                             <b><h4>${av.media_title}</h4></b>
                             <p class="m-0"><b>Escrito por:</b> <a href="${av.url}" target="_blank" class="text-dark">${av.author}</a></p>
@@ -187,7 +188,7 @@ function buscaReview(list, showAll) {
                             <p><b>Avaliação: </b>${av.content}</p>
                         </div>
                     </div>`);
-            }); 
+            });
         }
     } else {
         $("#divMaisAvaliacoes").hide();
@@ -204,7 +205,7 @@ async function carregaEntrevistas(max) {
     while(i<max) {
         const filme = listFilmes[i];
         const keyYT = await buscaVideo(filme.id);
-        
+
         $.ajax(`https://api.themoviedb.org/3/movie/${filme.id}/credits?api_key=${APIKey}&language=pt-BR`).then((data) => {
             const direcao = filterCrew(data.crew, 'Director');
             let roteiro = filterCrew(data.crew, 'Screenplay');
@@ -214,7 +215,7 @@ async function carregaEntrevistas(max) {
             $("#dadosEntrevista").append(
                 `<div class="col-12 col-md-4 my-2">
                     <div class="card">
-                        ${keyYT != null ? 
+                        ${keyYT != null ?
                             `<iframe class="card-img-top" height="200" src="https://www.youtube.com/embed/${keyYT}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
                         :
                         `<div class="card-img-top d-flex justify-content-center align-items-center">
@@ -228,7 +229,7 @@ async function carregaEntrevistas(max) {
                         <div class="card-body">
                             <h5 class="card-title"><b class="fs-4">Filme:</b> ${filme.title}</h5>
                             <p class="card-text">
-                                <p><b>Direção:</b> ${direcao ? direcao : 'Não disponível.'}</p> 
+                                <p><b>Direção:</b> ${direcao ? direcao : 'Não disponível.'}</p>
                                 <p><b>Roteiro:</b> ${roteiro ? roteiro : 'Não disponível.'}</p>
                                 <p><b>Estreia:</b> ${formatDate(new Date(date[0], date[1], date[2]))}</p>
                             </p>
@@ -244,9 +245,9 @@ async function carregaListaFilmes() {
     const list = [];
     let totPages = 0;
     await $.ajax(`https://api.themoviedb.org/3/movie/popular?api_key=${APIKey}&language=pt-BR&page=${pagina}`)
-    .then((data) => { 
+    .then((data) => {
         totPages = data.total_pages
-        list.push(...data.results) 
+        list.push(...data.results)
         pagination(totPages);
     }).catch(() => {
         notFound();
@@ -259,11 +260,11 @@ function pagination(totPages) {
     $("#optsPagination").empty();
     $("#optsPagination").append(
         `<li class="page-item ${pagina > 1 ? '' : 'disabled'}"><a class="page-link" href="?page=${pagina-1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                
+
         <li class="page-item active"><a class="page-link" href="?page=${pagina}">${pagina}</a></li>
         ${pagina+1 <= totPages ? `<li class="page-item"><a class="page-link" href="?page=${pagina+1}">${pagina+1}</a></li>` : ''}
         ${pagina+2 <= totPages ? `<li class="page-item"><a class="page-link" href="?page=${pagina+2}">${pagina+2}</a></li>` : ''}
-        
+
         <li class="page-item ${pagina == totPages ? 'disabled' : ''}"><a class="page-link" href="?page=${pagina+1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>`);
 }
 

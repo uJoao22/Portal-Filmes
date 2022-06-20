@@ -1,9 +1,10 @@
 const query = new URL(window.location.href).searchParams.get("nome");
 let pagina = new URL(window.location.href).searchParams.get("page");
 pagina = pagina == null ? 1 : parseInt(pagina);
+const path = '../';
 
 $(document).ready(async () => {
-    fetchNavBar("../");
+    fetchNavBar(path);
     document.querySelector("#pesquisado").innerHTML = query[0].toUpperCase() + query.substring(1);
     buscaFilme();
 });
@@ -33,11 +34,11 @@ function paginationn(totPages) {
     $("#optsPagination").empty();
     $("#optsPagination").append(
         `<li class="page-item ${pagina > 1 ? '' : 'disabled'}"><a class="page-link" href="${formatUrl(pagina-1)}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                
+
         <li class="page-item active"><a class="page-link" href="${formatUrl(pagina)}">${pagina}</a></li>
         ${pagina+1 <= totPages ? `<li class="page-item"><a class="page-link" href="${formatUrl(pagina+1)}">${pagina+1}</a></li>` : ''}
         ${pagina+2 <= totPages ? `<li class="page-item"><a class="page-link" href="${formatUrl(pagina+2)}">${pagina+2}</a></li>` : ''}
-        
+
         <li class="page-item ${pagina == totPages ? 'disabled' : ''}"><a class="page-link" href="${formatUrl(pagina+1)}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>`);
 }
 

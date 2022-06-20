@@ -1,7 +1,8 @@
 const idFilme = new URL(window.location.href).searchParams.get("id");
+const path = '../';
 
 $(document).ready(() => {
-    fetchNavBar("../");
+    fetchNavBar(path);
     carregaDetalhes();
 });
 
@@ -18,12 +19,12 @@ function carregaDetalhes() {
             `<div class="col-12 col-md-4">
                 <img class="w-100 m-0" src="${det.poster_path != null ? `https://image.tmdb.org/t/p/w500${det.poster_path}` : ''}" alt="${det.original_title}"></a>
             </div>
-            
+
             <div class="col-12 col-md-8 p-3">
                 <h2>${det.title}</h2>
                 <br>
                 <p><b>Sinopse: </b> ${det.overview ? det.overview : 'Não disponível.'}</p>
-                
+
                 <p><b>Gênero: </b> ${formatGenres(det.genres)}</p>
                 <p><b>Direção: </b> ${direcao ? direcao : 'Não disponível.'}</p>
                 <p><b>Roteiro: </b> ${roteiro ? roteiro : 'Não disponível.'}</p>
