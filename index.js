@@ -89,8 +89,8 @@ async function carregaLancamentos() {
                         ${keyYT != null ?
                             `<iframe class="col-xl-5 col-md-6 col-12 videoLancamento" width="560" src="https://www.youtube.com/embed/${keyYT}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
                         :
-                        `<div class="col-lg-5 col-md-6 col-12 d-flex justify-content-center align-items-center">
-                            <img src="${listFilmes[i].backdrop_path != null ? `https://image.tmdb.org/t/p/w500${listFilmes[i].backdrop_path}` : ''}" alt="${listFilmes[i].title}">
+                        `<div class="col-xl-5 col-md-6 col-12 d-flex justify-content-center align-items-center p-0">
+                            <img class="w-100" src="${listFilmes[i].backdrop_path != null ? `https://image.tmdb.org/t/p/w500${listFilmes[i].backdrop_path}` : ''}" alt="${listFilmes[i].title}">
                             <label class="position-absolute text-white p-2 px-5 text-center" style="background: rgba(0, 0, 0, 0.8)">
                                 <h3 class="">Trailer não encontrado.</h3>
                             </label>
